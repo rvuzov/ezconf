@@ -9,14 +9,14 @@ I made one I think is more dynamic, while at the same time simple to use.
 
 ## Installation
 
-        go get github.com/chrisftw/ezconf
+        go get github.com/rvuzov/ezconf
 
 ## Usage
 
 1. Make your conf file in the config directory.
 
         # This is a comment
-        # file named "[[namespace]].conf"
+        # file named "dev.conf"  of  prod.conf   ("dev" is default)
         key            : value
         first-name     : Baron
         middle-name    : Von
@@ -24,8 +24,12 @@ I made one I think is more dynamic, while at the same time simple to use.
 
 2. use your settings
 
-        Lastname := ezconf.Get("namespace", "last-name")
+        Lastname := ezconf.Get("last-name")
 
 3. add more settings with code
 
-        port := ezconf.Set("namespace", "nick-name", "Junior")
+        port := ezconf.Set("nick-name", "Junior")
+        
+4. start the application
+        go run MyApp dev  
+        
