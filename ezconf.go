@@ -15,42 +15,42 @@ func init() {
 	re = regexp.MustCompile("^\\s*([\\w-]*)\\s*:\\s*(.*)\\s*")
 }
 
-func Get(namespace string, setting string) string {
-	namespaceMap := fetchNamespace(namespace)
+func Get(setting string) string {
+	namespaceMap := fetchNamespace(os.Args[1])
 	val, _ := namespaceMap[setting]
 	return val
 }
 
-func GetUint(namespace string, setting string) uint64 {
-	namespaceMap := fetchNamespace(namespace)
+func GetUint(setting string) uint64 {
+	namespaceMap := fetchNamespace(os.Args[1])
 	val, _ := namespaceMap[setting]
 	parsedVal, _ := strconv.ParseUint(val, 10, 64)
 	return parsedVal
 }
 
-func GetInt(namespace string, setting string) int64 {
-	namespaceMap := fetchNamespace(namespace)
+func GetInt(setting string) int64 {
+	namespaceMap := fetchNamespace(os.Args[1])
 	val, _ := namespaceMap[setting]
 	parsedVal, _ := strconv.ParseInt(val, 10, 64)
 	return parsedVal
 }
 
-func GetFloat(namespace string, setting string) float64 {
-	namespaceMap := fetchNamespace(namespace)
+func GetFloat(setting string) float64 {
+	namespaceMap := fetchNamespace(os.Args[1])
 	val, _ := namespaceMap[setting]
 	parsedVal, _ := strconv.ParseFloat(val, 64)
 	return parsedVal
 }
 
-func GetBool(namespace string, setting string) bool {
-	namespaceMap := fetchNamespace(namespace)
+func GetBool(setting string) bool {
+	namespaceMap := fetchNamespace(os.Args[1])
 	val, _ := namespaceMap[setting]
 	parsedVal, _ := strconv.ParseBool(val)
 	return parsedVal
 }
 
-func Copy(namespace string) map[string]string {
-	namespaceMap := fetchNamespace(namespace)
+func Copy() map[string]string {
+	namespaceMap := fetchNamespace(os.Args[1])
 	mapCopy := make(map[string]string)
 	for k,v := range namespaceMap {
 	  mapCopy[k] = v
@@ -58,8 +58,8 @@ func Copy(namespace string) map[string]string {
 	return mapCopy
 }
 
-func Set(namespace string, setting string, value string) {
-	namespaceMap := fetchNamespace(namespace)
+func Set(setting string, value string) {
+	namespaceMap := fetchNamespace(os.Args[1])
 	namespaceMap[setting] = value
 }
 
